@@ -69,6 +69,12 @@ module.exports = defineConfig({
         ignores: [],
       },
     ],
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['index'], //需要忽略的组件名
+      },
+    ],
     // 编辑器里会给prettier错误进行报错
     'prettier/prettier': 'error',
   },

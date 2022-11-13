@@ -1,7 +1,17 @@
 import { createApp } from 'vue'
-import './style.css'
 import App from './App.vue'
+import store from './store'
+import router from './router'
+import i18n from './locals'
 
-createApp(App).mount('#app')
+function bootstrap() {
+  const app = createApp(App)
 
-const a = 1
+  app.use(store)
+  app.use(router)
+  app.use(i18n)
+
+  app.mount('#app')
+}
+
+bootstrap()
