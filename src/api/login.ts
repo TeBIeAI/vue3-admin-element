@@ -1,3 +1,4 @@
+import { RouteRecordRaw } from 'vue-router'
 import { request } from '../service'
 
 interface IResult {
@@ -19,6 +20,7 @@ export const login_acctoken = (params: LoginParams) => {
 
 interface IUserInfo {
   userinfo: object
+  menus: RouteRecordRaw[]
 }
 export const login_getUserInfo = () => {
   return request<IUserInfo>({

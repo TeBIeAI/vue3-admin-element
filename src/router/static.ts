@@ -8,13 +8,17 @@ const staticRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    redirect: '/index/index',
-  },
-  {
-    name: 'test-index',
-    path: '/index/index',
-    component: () => import('../components/HelloWorld.vue'),
+    redirect: '/userManage/userList',
   },
 ]
+
+export const ErrorPageRoute: RouteRecordRaw = {
+  path: '/:path(.*)*',
+  name: 'ErrorPage',
+  component: () => import('@/views/notFound/index.vue'),
+  meta: {
+    title: 'ErrorPage',
+  },
+}
 
 export { staticRoutes }

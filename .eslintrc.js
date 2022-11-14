@@ -42,6 +42,8 @@ module.exports = defineConfig({
     '@typescript-eslint/ban-types': 'off',
     // 禁止未使用的变量,报错关闭
     '@typescript-eslint/no-unused-vars': 'off',
+    'vue/custom-event-name-casing': 'off',
+    'vue/component-name-in-template-casing': 'off',
     // vue首行缩进两字符
     'vue/html-indent': [
       'error',
