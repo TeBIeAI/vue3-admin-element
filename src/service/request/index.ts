@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import type { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios'
+import { createHeaderAccToken } from '../helper'
+import { HRequestConfig } from '../types'
 
 export default class {
   // axios 实例
@@ -9,7 +11,11 @@ export default class {
     this.instance = axios.create(config)
     // 拦截器执行顺序 接口请求 -> 实例请求 -> 全局请求 -> 实例响应 -> 全局响应 -> 接口响应
     this.instance.interceptors.request.use(
-      (config: AxiosRequestConfig) => config,
+      (config: HRequestConfig) => {
+        // 此处头部添加请求头  因为我用的cook 请求头自动携带
+        // createHeaderAccToken(config)
+        return config
+      },
       (error: AxiosError) => Promise.reject(error)
     )
 

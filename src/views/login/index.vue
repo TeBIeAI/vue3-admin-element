@@ -27,7 +27,7 @@
       </ElFormItem>
       <ElButton
         size="large"
-        type="primary"
+        type="warning"
         style="width: 100%"
         @click="submitForm(ruleFormRef)"
       >
@@ -40,7 +40,7 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import { login } from '@/api'
+import { login_acctoken } from '@/api/login'
 import { useRouter } from 'vue-router'
 import Cookies from 'js-cookie'
 
@@ -54,8 +54,8 @@ interface LoginForm {
 const ruleFormRef = ref<FormInstance>()
 
 const ruleForm: LoginForm = reactive({
-  username: '',
-  password: '',
+  username: 'admin',
+  password: '123456',
 })
 
 const rules = reactive({
@@ -64,18 +64,16 @@ const rules = reactive({
 })
 
 const loginFetch = async (params: LoginForm) => {
-  const { data } = await await login()
-  console.log(data.list)
-
-  // if (!data?.token) {
-  //   ElMessage({
-  //     message: msg,
-  //     type: 'error',
-  //   })
-  // } else {
-  //   Cookies.set('token', data.token)
-  //   router.push('/')
-  // }
+  const { data, msg } = await login_acctoken(params)
+  if (!data.token) {
+    ElMessage({
+      message: msg,
+      type: 'error',
+    })
+  } else {
+    Cookies.set('token', data.token as unknown as string)
+    router.push('/')
+  }
 }
 
 const submitForm = (formEl: FormInstance | undefined) => {
@@ -93,7 +91,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 
 <style scoped lang="scss">
 .login-wrapper {
-  background: url(../../assets/images/login-bg-large.jpg);
+  background: url(../../assets/images/login-bj-large.jpg);
   background-size: 100% 100%;
   width: 100%;
   height: 100vh;
@@ -103,9 +101,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
     background-color: #ddd;
     padding: 60px 40px 50px 40px;
     position: absolute;
-    top: 50%;
-    left: 60%;
-    transform: translateY(-50%);
+    top: 30%;
+    left: 15%;
   }
 }
 </style>

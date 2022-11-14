@@ -30,6 +30,8 @@ module.exports = defineConfig({
     // 'no-undef': 'off',
     // 禁止使用 var
     'no-var': 'error',
+    // 允许使用断言
+    '@typescript-eslint/no-non-null-assertion': 'off',
     // 优先使用 interface 而不是 type
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     // 禁止any类型,报错关闭

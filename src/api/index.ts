@@ -1,11 +1,7 @@
 import { request } from '../service'
 
-interface Iresult {
-  list: object
-}
-
 export const login = () => {
-  return request<Iresult>({
+  return request({
     url: '/api/getUserInfo',
     method: 'GET',
   })

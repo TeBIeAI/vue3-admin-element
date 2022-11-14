@@ -6,7 +6,7 @@ const instance = new AxiosInstance({
   timeout: 50000,
 })
 
-const request = <T>(config: AxiosRequestConfig) => {
+const request = <T, R = any>(config: AxiosRequestConfig<R>) => {
   const { method = 'GET', params } = config
   config[method == 'GET' ? 'params' : 'data'] = params
   return instance.request<IResponse<T>>(config)
