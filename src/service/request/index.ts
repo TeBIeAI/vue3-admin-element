@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
 import type { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios'
-import { createHeaderAccToken } from '../helper'
 import { HRequestConfig } from '../types'
 
 export default class {

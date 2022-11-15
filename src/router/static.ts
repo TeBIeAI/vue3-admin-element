@@ -1,24 +1,24 @@
-import type { RouteRecordRaw } from 'vue-router'
+import { AppRouterRecordRaw } from './types'
 
-const staticRoutes: RouteRecordRaw[] = [
+const staticRoutes: AppRouterRecordRaw[] = [
   {
     name: 'login',
     path: '/login',
-    component: () => import('@/views/login/index.vue'),
+    component: () => import('@/views/login/index.vue')
   },
   {
     path: '/',
-    redirect: '/userManage/userList',
-  },
+    redirect: '/userManage/userList'
+  }
 ]
 
-export const ErrorPageRoute: RouteRecordRaw = {
+export const ErrorPageRoute: AppRouterRecordRaw = {
   path: '/:path(.*)*',
   name: 'ErrorPage',
   component: () => import('@/views/notFound/index.vue'),
   meta: {
-    title: 'ErrorPage',
-  },
+    title: 'ErrorPage'
+  }
 }
 
 export { staticRoutes }

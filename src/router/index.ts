@@ -4,7 +4,7 @@ import { routerGuard } from './router-guard'
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: staticRoutes,
+  routes: staticRoutes
 })
 
 routerGuard(router)

@@ -18,6 +18,14 @@
   text-align: center;
 }
 
+.t-r {
+  text-align: right;
+}
+
+.h100 {
+  height: 100%;
+}
+
 .margin-center {
   margin: 0 auto;
 }
@@ -27,11 +35,15 @@
 }
 
 .plr20 {
-  padding: 0 20px;
+  padding: 0 20px !important;
 }
 
 .mlr20 {
   margin: 0 20px;
+}
+
+.mr20 {
+  margin-right: 20px !important;
 }
 
 .mb20 {

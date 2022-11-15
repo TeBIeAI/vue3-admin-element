@@ -1,85 +1,67 @@
-// 需要安装依赖:  npm i eslint-define-config
-const { defineConfig } = require('eslint-define-config')
+const { defineConfig } = require('vite')
 
 module.exports = defineConfig({
-  // 当前配置为根配置，将不再从上级文件夹查找配置
-  root: true,
-  /* 指定如何解析语法。可以为空，但若不为空，只能配该值，原因见下文。*/
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:vue/vue3-essential',
+    'plugin:@typescript-eslint/recommended',
+    // 新增，必须放在最后面
+    'plugin:prettier/recommended'
+  ],
   parser: 'vue-eslint-parser',
-  /* 优先级低于parse的语法解析配置 */
   parserOptions: {
     ecmaVersion: 'latest',
     parser: '@typescript-eslint/parser',
-    sourceType: 'module',
+    sourceType: 'module'
   },
-  // https://eslint.bootcss.com/docs/user-guide/configuring#specifying-globals
-  globals: {
-    Nullable: true,
-  },
-  extends: [
-    // 扩展使用 vue3 检查规则和eslint推荐规则
-    'plugin:vue/vue3-recommended',
-    'eslint:recommended',
-    // typescript-eslint推荐规则,
-    'plugin:@typescript-eslint/recommended',
-    // prettier推荐规则,
-    'prettier',
-    'plugin:prettier/recommended',
-  ],
+  plugins: ['vue', '@typescript-eslint'],
   rules: {
-    // 'no-undef': 'off',
-    // 禁止使用 var
-    'no-var': 'error',
-    // 允许使用断言
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    // 优先使用 interface 而不是 type
-    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-    // 禁止any类型,报错关闭
-    '@typescript-eslint/no-explicit-any': 'off',
-    // 需要导出函数和类的公共类方法的显式返回和参数类型,报错关闭
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    // 禁止某些类型如String、Number,报错关闭
-    '@typescript-eslint/ban-types': 'off',
-    // 禁止未使用的变量,报错关闭
-    '@typescript-eslint/no-unused-vars': 'off',
-    'vue/custom-event-name-casing': 'off',
-    'vue/component-name-in-template-casing': 'off',
-    // vue首行缩进两字符
-    'vue/html-indent': [
+    '@typescript-eslint/no-explicit-any': 'off', // 可以使用 any 类型
+    // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/ban-types.md
+    '@typescript-eslint/ban-types': [
       'error',
-      2,
       {
-        // 属性缩进的乘数。默认为1。
-        attribute: 1,
-        // 顶级语句的缩进倍数。默认为1。
-        baseIndent: 1,
-        // 右括号缩进的乘数。默认为0。
-        closeBracket: 0,
-        // 属性是否应垂直对齐到多行情况下的第一个属性的条件。默认为true
-        alignAttributesVertically: true,
-        // 忽略节点的选择器。默认是[]
-        ignores: [],
-      },
+        types: {
+          // add a custom message to help explain why not to use it
+          Foo: "Don't use Foo because it is unsafe",
+
+          // add a custom message, AND tell the plugin how to fix it
+          String: {
+            message: 'Use string instead',
+            fixWith: 'string'
+          },
+
+          '{}': {
+            message: 'Use object instead',
+            fixWith: 'object'
+          }
+        }
+      }
     ],
-    // 每行最大属性数关闭
-    'vue/max-attributes-per-line': ['off'],
-    // 强制使用驼峰命名
-    'vue/component-name-in-template-casing': [
+    // 禁止出现未使用的变量
+    '@typescript-eslint/no-unused-vars': [
       'error',
-      'PascalCase',
-      {
-        // 如果true，则仅检查已注册的组件（在 PascalCase 中）。如果false，检查所有。默认true
-        registeredComponentsOnly: false,
-        ignores: [],
-      },
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
     ],
     'vue/multi-word-component-names': [
       'error',
       {
-        ignores: ['index'], //需要忽略的组件名
-      },
+        ignores: ['index'] //需要忽略的组件名
+      }
     ],
-    // 编辑器里会给prettier错误进行报错
-    'prettier/prettier': 'error',
-  },
+    // 关闭此规则 使用 prettier 的格式化规则，
+    'vue/max-attributes-per-line': ['off'],
+    'prettier/prettier': [
+      'error',
+      {
+        trailingComma: 'none'
+      }
+    ],
+    '@typescript-eslint/no-non-null-assertion': 'off'
+  }
 })

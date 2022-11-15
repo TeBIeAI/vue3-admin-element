@@ -16,21 +16,21 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       alias: {
         '@': resolve(__dirname, 'src'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-        extensions: ['.js', '.json', '.ts', '.vue'] as unknown as string, // 使用路径别名时想要省略的后缀名，可以自己 增减
-      },
+        extensions: ['.js', '.json', '.ts', '.vue'] as unknown as string // 使用路径别名时想要省略的后缀名，可以自己 增减
+      }
     },
     plugins: [
       vue(),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()]
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()]
       }),
-      viteMockServe(),
+      viteMockServe()
     ],
     server: {
-      port: env.VITE_APP_PORT as unknown as number,
+      port: env.VITE_APP_PORT as unknown as number
       // proxy: {
       //   '/api': {
       //     target: env.VITE_APP_API_BASE_URL,
@@ -42,9 +42,9 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/styles/var.scss";',
-        },
-      },
-    },
+          additionalData: '@import "@/styles/var.scss";'
+        }
+      }
+    }
   }
 })

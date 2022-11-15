@@ -55,12 +55,12 @@ const ruleFormRef = ref<FormInstance>()
 
 const ruleForm: LoginForm = reactive({
   username: 'admin',
-  password: '123456',
+  password: '123456'
 })
 
 const rules = reactive({
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 })
 
 const loginFetch = async (params: LoginForm) => {
@@ -68,7 +68,7 @@ const loginFetch = async (params: LoginForm) => {
   if (!data.token) {
     ElMessage({
       message: msg,
-      type: 'error',
+      type: 'error'
     })
   } else {
     Cookies.set('token', data.token as unknown as string)

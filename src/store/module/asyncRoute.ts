@@ -1,19 +1,18 @@
+import { AppRouterRecordRaw } from '@/router/types'
 import { defineStore } from 'pinia'
-import type { RouteRecordRaw } from 'vue-router'
 
 interface AsyncRouterState {
-  asyncRoutes: RouteRecordRaw[]
+  asyncRoutes: AppRouterRecordRaw[]
   keepAliveComponents: string[]
   isDynamicAddedRoute: boolean
 }
-
 const useAsyncRoute = defineStore({
   id: 'async-route-store',
   state: (): AsyncRouterState => {
     return {
       asyncRoutes: [],
       keepAliveComponents: [],
-      isDynamicAddedRoute: false,
+      isDynamicAddedRoute: false
     }
   },
   getters: {
@@ -23,31 +22,31 @@ const useAsyncRoute = defineStore({
     getKeepAliveComponents(): string[] {
       return this.keepAliveComponents
     },
-    getAsyncRoutes(): RouteRecordRaw[] {
+    getAsyncRoutes(): AppRouterRecordRaw[] {
       return this.asyncRoutes
-    },
+    }
   },
   actions: {
-    setAsyncRoutes(routes: RouteRecordRaw[]) {
+    setAsyncRoutes(routes: AppRouterRecordRaw[]) {
       this.asyncRoutes = routes
     },
     setIsDynamicAddedRoute(bool: boolean) {
       this.isDynamicAddedRoute = bool
     },
-    generateRoutes(asyncRoutes: RouteRecordRaw[]) {
+    generateRoutes(asyncRoutes: AppRouterRecordRaw[]) {
       const _asyncRoutes = createAsyncRouterTree(asyncRoutes)
       this.setAsyncRoutes(_asyncRoutes)
-    },
-  },
+    }
+  }
 })
 
-function createRouteType(route: any): RouteRecordRaw {
+function createRouteType(route: any): AppRouterRecordRaw {
   const path = route.filePath
   route.path = route.pid === 0 ? '/' + route.name : route.name
   route.component = () => import(/* @vite-ignore */ `/src${path}.vue`)
   route.component1 = path
   route.meta = {
-    title: route.title,
+    title: route.title
   }
   return route
 }
@@ -64,7 +63,7 @@ function createAsyncRouterTree(routeList: any[]) {
     // map[it.id] = it
   })
   // 定义返回集合
-  const val: RouteRecordRaw[] = []
+  const val: AppRouterRecordRaw[] = []
   routeList.forEach(function (it) {
     const parent = map[it.pid]
     if (parent) {

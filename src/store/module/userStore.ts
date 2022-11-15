@@ -2,11 +2,26 @@ import { login_getUserInfo } from '@/api/login'
 import { defineStore } from 'pinia'
 import { useAsyncRoute } from './asyncRoute'
 
+interface UserStore {
+  userinfo: {
+    nickname: string
+    avatar: string
+  }
+}
+
 const useUserStore = defineStore({
   id: 'user-store',
   state: (): UserStore => {
     return {
-      userinfo: null,
+      userinfo: {
+        nickname: '',
+        avatar: ''
+      }
+    }
+  },
+  getters: {
+    getUserInfos(): UserStore['userinfo'] {
+      return this.userinfo
     }
   },
   actions: {
@@ -22,8 +37,8 @@ const useUserStore = defineStore({
       } catch (error) {
         return false
       }
-    },
-  },
+    }
+  }
 })
 
 export { useUserStore }

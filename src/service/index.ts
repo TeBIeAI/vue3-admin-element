@@ -3,7 +3,7 @@ import type { AxiosRequestConfig } from 'axios'
 
 const instance = new AxiosInstance({
   baseURL: import.meta.env.BASE_URL,
-  timeout: 50000,
+  timeout: 50000
 })
 
 const request = <T, R = any>(config: AxiosRequestConfig<R>) => {

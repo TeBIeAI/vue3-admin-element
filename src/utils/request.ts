@@ -7,9 +7,9 @@ const createAxios = (axiosConfig: AxiosRequestConfig) => {
     timeout: 1000 * 10,
     headers: {
       'Content-Type': 'application/json',
-      server: true,
+      server: true
     },
-    responseType: 'json',
+    responseType: 'json'
   })
 
   Axios.interceptors.request.use(
