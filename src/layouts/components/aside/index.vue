@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useProjectSetting } from '@/store/module/projectSetting'
+import { useProjectSetting } from '@/store/modules/projectSetting'
 import { computed, unref } from 'vue'
 import AsideMenu from './asideMenu.vue'
 import { storeToRefs } from 'pinia'
@@ -44,7 +44,7 @@ const showDrawer = computed({
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useDesignSetting } from '@/store/module/designSetting'
+import { useDesignSetting } from '@/store/modules/designSetting'
 export default defineComponent({
   name: 'LayoutAside'
 })

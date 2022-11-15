@@ -43,17 +43,18 @@ module.exports = defineConfig({
         }
       }
     ],
+    'vue/multi-word-component-names': 'off',
     // 禁止出现未使用的变量
     '@typescript-eslint/no-unused-vars': [
       'error',
       { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
     ],
-    'vue/multi-word-component-names': [
-      'error',
-      {
-        ignores: ['index'] //需要忽略的组件名
-      }
-    ],
+    // 'vue/multi-word-component-names': [
+    //   'error',
+    //   {
+    //     ignores: ['index'] //需要忽略的组件名
+    //   }
+    // ],
     // 关闭此规则 使用 prettier 的格式化规则，
     'vue/max-attributes-per-line': ['off'],
     'prettier/prettier': [

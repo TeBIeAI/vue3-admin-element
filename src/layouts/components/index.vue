@@ -20,7 +20,7 @@
 import Aside from './aside'
 import Header from './header'
 import { onMounted } from 'vue'
-import { useProjectSetting } from '@/store/module/projectSetting'
+import { useProjectSetting } from '@/store/modules/projectSetting'
 
 const projectSettingStore = useProjectSetting()
 const { mobileWidth } = projectSettingStore.getAppMenuSetting

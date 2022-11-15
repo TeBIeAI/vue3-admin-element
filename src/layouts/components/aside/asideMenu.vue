@@ -18,9 +18,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useAsyncRoute } from '@/store/module/asyncRoute'
-import { useDesignSetting } from '@/store/module/designSetting'
-import { useProjectSetting } from '@/store/module/projectSetting'
+import { useAsyncRoute } from '@/store/modules/asyncRoute'
+import { useDesignSetting } from '@/store/modules/designSetting'
+import { useProjectSetting } from '@/store/modules/projectSetting'
 import { AppRouterRecordRaw } from '@/router/types'
 import { computed, ref } from 'vue'
 import SubMenu from './subMenu.vue'

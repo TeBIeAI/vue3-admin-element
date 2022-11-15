@@ -1,5 +1,12 @@
 <template>
-  <div class="app-header plr20">
+  <div v-if="getAppNavMode === 'horizontal' && !getAppIsMobile">
+    <el-row>
+      <el-col :span="18">
+        <aside-menu></aside-menu>
+      </el-col>
+    </el-row>
+  </div>
+  <div v-else class="app-header plr20">
     <el-row
       v-if="!getAppIsMobile && getAppNavMode === 'vertical'"
       class="h100 flex-center"
@@ -11,9 +18,22 @@
           <Fold v-else />
         </el-icon>
       </div>
-      <el-col :span="11"> 面包屑 </el-col>
-      <el-col :span="10" class="t-r">
-        <div>{{ userStore.userinfo.nickname }}</div>
+      <el-col :span="11">
+        <BreadCrumb></BreadCrumb>
+      </el-col>
+      <el-col :span="10">
+        <div class="flex flex-jc-end">
+          <div>
+            <el-icon
+              class="mr20"
+              :size="20"
+              @click="projectSettingRef.openDrawer()"
+            >
+              <Setting />
+            </el-icon>
+          </div>
+          <div>{{ userStore.userinfo.nickname }}</div>
+        </div>
       </el-col>
     </el-row>
 
@@ -41,22 +61,18 @@
       </el-dropdown>
     </div>
   </div>
-
-  <div v-if="getAppNavMode === 'horizontal' && !getAppIsMobile">
-    <el-row>
-      <el-col :span="18">
-        <aside-menu></aside-menu>
-      </el-col>
-    </el-row>
-  </div>
+  <project-setting ref="projectSettingRef"></project-setting>
 </template>
 
 <script setup lang="ts">
 import AsideMenu from '@/layouts/components/aside/asideMenu.vue'
-import { useProjectSetting } from '@/store/module/projectSetting'
-import { useUserStore } from '@/store/module/userStore'
-import { Fold, Expand, ArrowDown } from '@element-plus/icons-vue'
+import BreadCrumb from './breadCrumb.vue'
+import ProjectSetting from './projectSetting.vue'
+import { useProjectSetting } from '@/store/modules/projectSetting'
+import { useUserStore } from '@/store/modules/userStore'
+import { Fold, Expand, ArrowDown, Setting } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 
 const projectSettingStore = useProjectSetting()
 
@@ -72,6 +88,7 @@ const userStore = useUserStore()
 const handleCollapsed = () => {
   projectSettingStore.setAppMenuCollapsed()
 }
+const projectSettingRef = ref()
 </script>
 
 <style scoped lang="scss">

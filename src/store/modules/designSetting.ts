@@ -51,6 +51,10 @@ const useDesignSetting = defineStore({
       return this.appThemeList
     }
   },
-  actions: {}
+  actions: {
+    setAppThemeColor(color: string) {
+      this.appThemeColor = color
+    }
+  }
 })
 export { useDesignSetting }

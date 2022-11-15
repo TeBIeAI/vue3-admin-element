@@ -33,6 +33,9 @@ const useProjectSetting = defineStore({
     }
   },
   actions: {
+    setAppNavMode(mode: string) {
+      this.navMode = mode
+    },
     setAppIsMobile(bool: boolean) {
       this.isMobile = bool
     },
