@@ -1,13 +1,5 @@
 <template>
-  <ElMenu
-    unique-opened
-    router
-    :collapse="collapse"
-    :mode="projectSettingStore.getAppNavMode"
-    :background-color="designSettingStore.getAppMenuTheme"
-    :text-color="designSettingStore.getAppMenuTextColor"
-    :active-text-color="designSettingStore.getAppActiveTextColor"
-  >
+  <ElMenu v-bind="getMenuAttrs">
     <SubMenu
       v-for="menu in menus"
       :key="menu.name"
@@ -19,7 +11,7 @@
 
 <script lang="ts" setup>
 import { useAsyncRoute } from '@/store/modules/asyncRoute'
-import { useDesignSetting } from '@/store/modules/designSetting'
+// import { useDesignSetting } from '@/store/modules/designSetting'
 import { useProjectSetting } from '@/store/modules/projectSetting'
 import { AppRouterRecordRaw } from '@/router/types'
 import { computed, ref } from 'vue'
@@ -36,12 +28,27 @@ const props = withDefaults(
 const menus = ref<AppRouterRecordRaw[]>([])
 
 const asyncRouterStore = useAsyncRoute()
-const designSettingStore = useDesignSetting()
 const projectSettingStore = useProjectSetting()
+
+const getAppLayoutMode = computed(() => {
+  return projectSettingStore.appLayoutMode === 'classic'
+    ? 'vertical'
+    : 'horizontal'
+})
+
 const collapse = computed(
   () => props.collapsed && projectSettingStore.getAppMenuSetting.collapsed
 )
 menus.value = asyncRouterStore.getAsyncRoutes
+
+const getMenuAttrs = computed(() => {
+  return {
+    uniqueOpened: true,
+    collapse: collapse.value,
+    router: true,
+    mode: getAppLayoutMode.value
+  }
+})
 </script>
 
 <script lang="ts">
@@ -54,5 +61,10 @@ export default defineComponent({
 .el-menu {
   height: 100%;
   border-right: none;
+  width: v-bind(
+    'projectSettingStore.appLayoutMode === "streamline" ? "50%" : "auto"'
+  );
+  border-bottom: 0;
+  // box-shadow: 1px 1px 4px rgb(0 21 41 / 8%);
 }
 </style>

@@ -1,9 +1,13 @@
 <template>
-  <el-drawer v-model="isDrawer" :size="250" :show-close="false">
+  <el-drawer
+    v-model="projectSetting.appSetting.showDrawer"
+    :size="250"
+    :show-close="false"
+  >
     <el-divider>主题</el-divider>
     <el-switch
       v-model="designSettingStore.appDarkTheme"
-      @change="useDarkCb()"
+      @change="toggleDark()"
     ></el-switch>
 
     <!-- 系统主题 -->
@@ -29,22 +33,22 @@
     <el-divider>主题</el-divider>
     <div>
       <div>
-        <el-button @click="projectSetting.setAppNavMode('vertical')"
+        <el-button @click="projectSetting.appLayoutMode = 'classic'"
           >左侧菜单模式</el-button
         >
         <el-badge
-          v-show="projectSetting.getAppNavMode === 'vertical'"
+          v-show="projectSetting.appLayoutMode === 'classic'"
           is-dot
           class="item"
         >
         </el-badge>
       </div>
       <div>
-        <el-button @click="projectSetting.setAppNavMode('horizontal')"
+        <el-button @click="projectSetting.appLayoutMode = 'streamline'"
           >顶部菜单模式</el-button
         >
         <el-badge
-          v-show="projectSetting.getAppNavMode === 'horizontal'"
+          v-show="projectSetting.appLayoutMode === 'streamline'"
           is-dot
           class="item"
         >
@@ -59,7 +63,7 @@ import { useDesignSetting } from '@/store/modules/designSetting'
 import { ref } from 'vue'
 import { useProjectSetting } from '@/store/modules/projectSetting'
 import { Check } from '@element-plus/icons-vue'
-import { useDarkCb } from '@/hooks/useDark'
+import { toggleDark } from '@/hooks/useDark'
 
 const isDrawer = ref()
 

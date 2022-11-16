@@ -5,7 +5,7 @@ const routesData = [
     id: 1,
     name: 'userManage',
     title: '用户管理',
-    filePath: '/layouts/components/index',
+    filePath: '/layouts/index',
     pid: 0
   },
   {

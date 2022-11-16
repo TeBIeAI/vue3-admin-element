@@ -1,24 +1,15 @@
 <template>
-  <div class="common-layout">
-    <ElContainer>
-      <Aside></Aside>
-      <ElContainer>
-        <ElHeader>
-          <Header></Header>
-        </ElHeader>
-        <ElMain>
-          Main
-          <RouterView></RouterView>
-        </ElMain>
-        <ElFooter>Footer</ElFooter>
-      </ElContainer>
-    </ElContainer>
-  </div>
+  <el-container class="layout-container">
+    <Aside />
+    <el-container class="content-wrap">
+      <Header />
+    </el-container>
+  </el-container>
 </template>
 
-<script setup lang="ts">
-import Aside from './aside'
-import Header from './header'
+<script lang="ts" setup>
+import Aside from '@/layouts/components/aside'
+import Header from '@/layouts/components/header'
 import { onMounted, onUnmounted } from 'vue'
 import { useProjectSetting } from '@/store/modules/projectSetting'
 
@@ -45,18 +36,16 @@ onMounted(() => {
 onUnmounted(() => window.removeEventListener('resize', checkIsMoble))
 </script>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'LayoutWrap'
-})
-</script>
-
 <style scoped lang="scss">
-.el-footer {
-  background-color: bisque;
-}
-:deep(.el-drawer .el-drawer__body) {
-  padding: 0 !important;
+.layout-container {
+  width: 100%;
+  height: 100%;
+
+  .content-wrap {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+  }
 }
 </style>
