@@ -42,6 +42,9 @@ const useProjectSetting = defineStore({
     setAppMenuCollapsed() {
       this.menuSetting.collapsed = !this.menuSetting.collapsed
     }
+  },
+  persist: {
+    enabled: true
   }
 })
 export { useProjectSetting }

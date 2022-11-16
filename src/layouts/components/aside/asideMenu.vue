@@ -14,7 +14,7 @@ import { useAsyncRoute } from '@/store/modules/asyncRoute'
 // import { useDesignSetting } from '@/store/modules/designSetting'
 import { useProjectSetting } from '@/store/modules/projectSetting'
 import { AppRouterRecordRaw } from '@/router/types'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import SubMenu from './subMenu.vue'
 const props = withDefaults(
   defineProps<{
@@ -26,6 +26,8 @@ const props = withDefaults(
 )
 
 const menus = ref<AppRouterRecordRaw[]>([])
+const route = useRoute()
+const currentOpenKey = ref<string>()
 
 const asyncRouterStore = useAsyncRoute()
 const projectSettingStore = useProjectSetting()
@@ -39,20 +41,31 @@ const getAppLayoutMode = computed(() => {
 const collapse = computed(
   () => props.collapsed && projectSettingStore.getAppMenuSetting.collapsed
 )
-menus.value = asyncRouterStore.getAsyncRoutes
 
 const getMenuAttrs = computed(() => {
   return {
     uniqueOpened: true,
     collapse: collapse.value,
     router: true,
-    mode: getAppLayoutMode.value
+    mode: getAppLayoutMode.value,
+    defaultActive: currentOpenKey.value
   }
+})
+
+menus.value = asyncRouterStore.getAsyncRoutes
+
+const createActiveMenu = (route: RouteLocationNormalizedLoaded) => {
+  currentOpenKey.value = route.path
+}
+
+onMounted(() => {
+  createActiveMenu(route)
 })
 </script>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { RouteLocationNormalizedLoaded, useRoute } from 'vue-router'
 export default defineComponent({
   name: 'AsideMenu'
 })

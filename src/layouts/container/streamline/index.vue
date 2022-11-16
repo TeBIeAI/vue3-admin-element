@@ -2,12 +2,14 @@
   <el-container class="layout-container">
     <el-container class="content-wrapper">
       <Header />
+      <Main />
     </el-container>
   </el-container>
 </template>
 
 <script lang="ts" setup>
 import Header from '@/layouts/components/header'
+import Main from '@/layouts/components/main'
 </script>
 
 <style scoped lang="scss">

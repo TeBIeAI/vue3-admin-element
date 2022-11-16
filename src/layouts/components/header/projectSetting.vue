@@ -1,17 +1,17 @@
 <template>
   <el-drawer
     v-model="projectSetting.appSetting.showDrawer"
-    :size="250"
+    :size="280"
     :show-close="false"
   >
-    <el-divider>主题</el-divider>
-    <el-switch
-      v-model="designSettingStore.appDarkTheme"
-      @change="toggleDark()"
-    ></el-switch>
+    <el-divider border-style="dashed">全局</el-divider>
+    <div class="flex flex-center">
+      <div>暗黑模式：</div>
+      <HSwitch @click="toggleDark()" />
+    </div>
 
     <!-- 系统主题 -->
-    <el-divider>系统主题</el-divider>
+    <el-divider border-style="dashed">系统主题</el-divider>
     <div>
       <template v-for="color in appThemeList" :key="color">
         <span
@@ -30,35 +30,46 @@
     </div>
 
     <!-- 导航栏模式 -->
-    <el-divider>主题</el-divider>
-    <div>
+    <el-divider border-style="dashed">布局方式</el-divider>
+    <div class="flex flex-jc-sa">
       <div>
-        <el-button @click="projectSetting.appLayoutMode = 'classic'"
-          >左侧菜单模式</el-button
-        >
-        <el-badge
-          v-show="projectSetting.appLayoutMode === 'classic'"
-          is-dot
-          class="item"
-        >
-        </el-badge>
+        <img
+          class="theme-svg"
+          @click="projectSetting.appLayoutMode = 'classic'"
+          src="~@/assets/images/theme/nav-theme-dark.svg"
+          alt="左侧菜单布局"
+        />
+        <div class="t-c">
+          <el-badge
+            v-show="projectSetting.appLayoutMode === 'classic'"
+            is-dot
+            class="item"
+          >
+          </el-badge>
+        </div>
       </div>
       <div>
-        <el-button @click="projectSetting.appLayoutMode = 'streamline'"
-          >顶部菜单模式</el-button
-        >
-        <el-badge
-          v-show="projectSetting.appLayoutMode === 'streamline'"
-          is-dot
-          class="item"
-        >
-        </el-badge>
+        <img
+          class="theme-svg"
+          @click="projectSetting.appLayoutMode = 'streamline'"
+          src="~@/assets/images/theme/nav-horizontal.svg"
+          alt=""
+        />
+        <div class="t-c">
+          <el-badge
+            v-show="projectSetting.appLayoutMode === 'streamline'"
+            is-dot
+            class="item"
+          >
+          </el-badge>
+        </div>
       </div>
     </div>
   </el-drawer>
 </template>
 
 <script lang="ts" setup>
+import HSwitch from '@/components/hSwitch/index.vue'
 import { useDesignSetting } from '@/store/modules/designSetting'
 import { ref } from 'vue'
 import { useProjectSetting } from '@/store/modules/projectSetting'
@@ -83,5 +94,8 @@ defineExpose({ openDrawer })
   display: inline-block;
   width: 20px;
   height: 20px;
+}
+.theme-svg {
+  width: 80px;
 }
 </style>

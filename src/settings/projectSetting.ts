@@ -15,7 +15,7 @@ const setting = {
     fixed: true,
     //显示重载按钮
     isReload: true,
-    height: 60
+    height: 50
   },
   //页脚
   showFooter: true,
