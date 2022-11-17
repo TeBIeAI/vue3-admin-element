@@ -4,6 +4,7 @@ import store from './store'
 import router from './router'
 import i18n from './locals'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import './styles/index.scss'
 
 function bootstrap() {
   const app = createApp(App)

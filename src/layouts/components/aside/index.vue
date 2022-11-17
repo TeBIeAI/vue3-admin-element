@@ -3,7 +3,7 @@
     v-if="!getAppIsMobile && projectSettingStore.appLayoutMode === 'classic'"
     :width="`${getMunuWidth}px`"
   >
-    <el-scrollbar>
+    <el-scrollbar height="100vh">
       <aside-menu></aside-menu>
     </el-scrollbar>
   </el-aside>
@@ -56,5 +56,7 @@ export default defineComponent({
 .el-aside {
   transition: width 0.3s;
   box-shadow: 1px 1px 4px rgb(0 21 41 / 8%);
+  height: 100vh;
+  background-color: #fff;
 }
 </style>

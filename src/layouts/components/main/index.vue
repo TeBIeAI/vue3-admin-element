@@ -1,5 +1,5 @@
 <template>
-  <el-main>
+  <el-main class="main-wrapper">
     <el-scrollbar>
       <router-view></router-view>
     </el-scrollbar>

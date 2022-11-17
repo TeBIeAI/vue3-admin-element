@@ -38,13 +38,13 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       //     rewrite: (path) => path.replace(/^\/api/, ''),
       //   },
       // },
-    },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: '@import "@/styles/var.scss";'
-        }
-      }
     }
+    // css: {
+    //   preprocessorOptions: {
+    //     scss: {
+    //       additionalData: '@import "@/styles/var.scss";'
+    //     }
+    //   }
+    // }
   }
 })

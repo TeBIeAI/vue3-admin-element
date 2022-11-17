@@ -3,6 +3,6 @@
 </template>
 
 <style>
-@import './styles/app.scss';
-@import './styles/common.scss';
+/* @import './styles/app.scss';
+@import './styles/common.scss'; */
 </style>

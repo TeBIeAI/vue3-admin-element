@@ -1,0 +1,9 @@
+@mixin set-css-var-value($name, $value) {
+  #{join-prefix($name)}: #{$value};
+}
+
+@function join-prefix($name) {
+  $prefixName: '--h' + '-' + $name;
+
+  @return $prefixName;
+}
