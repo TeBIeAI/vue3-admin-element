@@ -57,6 +57,7 @@ module.exports = defineConfig({
     // ],
     // 关闭此规则 使用 prettier 的格式化规则，
     'vue/max-attributes-per-line': ['off'],
+    '@typescript-eslint/ban-types': 'off',
     'prettier/prettier': [
       'error',
       {

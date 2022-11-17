@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Column: typeof import('./src/components/hTable/src/column/column.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBadge: typeof import('element-plus/es')['ElBadge']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -24,7 +25,13 @@ declare module '@vue/runtime-core' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    FieldRender: typeof import('./src/components/hTable/src/fieldRender/fieldRender.vue')['default']
     HSwitch: typeof import('./src/components/hSwitch/index.vue')['default']
+    HTable: typeof import('./src/components/hTable/index.vue')['default']
+    RenderCell: typeof import('./src/components/hTable/src/fieldRender/renderCell.vue')['default']
+    RenderField: typeof import('./src/components/hTable/src/fieldRender/renderField.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
