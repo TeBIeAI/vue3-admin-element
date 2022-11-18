@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 export default class {
   public table: HTable = reactive({
     data: [],
-    loading: false,
+    loading: true,
     column: []
   })
 

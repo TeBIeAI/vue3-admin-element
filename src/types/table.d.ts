@@ -1,5 +1,5 @@
 import HTable from '@/components/hTable'
-import type { ElTableColumn } from 'element-plus'
+import type { ElTableColumn, TagProps } from 'element-plus'
 
 declare global {
   interface HTable {
@@ -14,12 +14,18 @@ declare global {
   }
 
   interface TableColumn extends ElTableColumn {
+    size?: TagProps['size']
     show?: boolean
-    render?: 'icon' | 'tag' | 'image' | 'images' | 'buttons'
+    render?: 'icon' | 'tag' | 'image' | 'images' | 'buttons' | 'switch'
+    // 需要替换的值 例如 {1: '男'， 2：'女'}
+    replaceValue?: any
+    // 自定义数据:比如渲染为Tag时,可以指定不同值时的Tag的Type属性 { open: 'success', close: 'info' }
+    custom?: any
+    effect?: TagProps['effect']
   }
 
-  interface TableRow {
-    children?: TableRow
+  interface TableRow extends AnyObj {
+    children?: TableRow[]
   }
 }
 
