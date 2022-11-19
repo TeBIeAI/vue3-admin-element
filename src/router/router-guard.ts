@@ -53,6 +53,21 @@ const routerGuard = (router: Router) => {
     if (isNavigationFailure(failure)) {
       console.log('failed navigation', failure)
     }
+    // 处理缓存
+    const asyncRouteStore = useAsyncRoute()
+    const keepAliveComponents = asyncRouteStore.keepAliveComponents
+    console.log(to)
+    const cureentCompName = to.matched.find((item) => item.name === to.name)
+      ?.name as string
+    if (
+      cureentCompName &&
+      to.meta.keepAlive &&
+      !keepAliveComponents.includes(cureentCompName)
+    ) {
+      // 存入keepAlive
+      keepAliveComponents.push(cureentCompName)
+    }
+
     NProgress.done(true)
   })
 }

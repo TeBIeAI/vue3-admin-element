@@ -13,6 +13,22 @@ declare global {
     showComSearch?: boolean
   }
 
+  interface OptButton {
+    // tipButton 提示框按钮 popButton 弹出框button
+    renderType: 'tipButton' | 'popButton'
+    // 按钮tooltip需要提示的
+    title?: string
+    // 按钮文字
+    text?: string
+    icon: string
+    type: ButtonType
+    click?: (row: TableRow, column: TableColumn) => void
+    display?: (row: TableRow, column: TableColumn) => boolean
+    disabled?: (row: TableRow, column: TableColumn) => boolean
+  }
+
+  type optButtonType = 'edit' | 'delete'
+
   interface TableColumn extends ElTableColumn {
     size?: TagProps['size']
     show?: boolean
@@ -22,6 +38,7 @@ declare global {
     // 自定义数据:比如渲染为Tag时,可以指定不同值时的Tag的Type属性 { open: 'success', close: 'info' }
     custom?: any
     effect?: TagProps['effect']
+    buttons?: OptButton[]
   }
 
   interface TableRow extends AnyObj {

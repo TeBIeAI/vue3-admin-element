@@ -21,7 +21,34 @@
       :preview-teleported="true"
       :preview-src-list="[fullUrl(fieldValue)]"
       :src="fullUrl(fieldValue)"
+      lazy
     ></el-image>
+  </div>
+  <div
+    v-if="
+      field.render === 'buttons' &&
+      field.buttons &&
+      Array.isArray(field.buttons)
+    "
+  >
+    <template v-for="(item, index) in field.buttons" :key="index">
+      <template v-if="item.display ? item.display(row, field) : true">
+        <el-tooltip
+          v-if="item.renderType === 'tipButton'"
+          :content="item.title"
+        >
+          <el-button
+            @click="item.click"
+            :disabled="item.disabled"
+            :icon="item.icon"
+            size="small"
+            :type="item.type"
+          >
+            <div v-if="item.text">{{ item.text }}</div>
+          </el-button>
+        </el-tooltip>
+      </template>
+    </template>
   </div>
 </template>
 
@@ -45,10 +72,17 @@ const props = defineProps<Props>()
 const fieldName: Ref<string | undefined> = ref(props.field.prop)
 const fieldValue = ref(fieldName.value ? props.row[fieldName.value] : '')
 
+if (fieldName.value && fieldName.value.indexOf?.('.') > -1) {
+  const arrs = fieldName.value.split('.')
+  let val = ref(props.row[arrs[0]])
+  arrs.shift()
+  arrs.map((item) => {
+    val.value = val.value && val.value !== '' ? val.value[item] ?? '' : ''
+  })
+  fieldValue.value = val.value
+}
+
 const getValueType = (value: keyof any, custom: any): TagProps['type'] => {
   return custom ? custom[value] : ''
 }
-
-console.log(fieldName.value)
-console.log(fieldValue.value)
 </script>

@@ -19,9 +19,6 @@ const useAsyncRoute = defineStore({
     getIsDynamicAddedRoute(): boolean {
       return this.isDynamicAddedRoute
     },
-    getKeepAliveComponents(): string[] {
-      return this.keepAliveComponents
-    },
     getAsyncRoutes(): AppRouterRecordRaw[] {
       return this.asyncRoutes
     }
@@ -46,7 +43,8 @@ function createRouteType(route: any): AppRouterRecordRaw {
   route.component = () => import(/* @vite-ignore */ `/src${path}.vue`)
   route.component1 = path
   route.meta = {
-    title: route.title
+    title: route.title,
+    keepAlive: route.keepAlive
   }
   return route
 }

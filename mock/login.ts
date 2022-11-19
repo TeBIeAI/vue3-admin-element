@@ -14,6 +14,7 @@ const routesData = [
     title: '列表',
     filePath: '/views/userManage/list/index',
     pid: 1,
+    // keepAlive: 1,
     operation: ['add', 'edit', 'delete']
   },
   {

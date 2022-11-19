@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock'
 import Mock from 'mockjs'
-import { getTimeOut } from './utils'
+// import { getTimeOut } from './utils'
 
 const Random = Mock.Random
 
@@ -8,7 +8,7 @@ export default [
   {
     url: '/api/get_userlist',
     method: 'get',
-    timeout: getTimeOut(),
+    // timeout: getTimeOut(),
     response: () => {
       return {
         code: 200,
@@ -24,7 +24,13 @@ export default [
               mobile_phone: '@natural(13000000000,19900000000)',
               email: '@email',
               'sex|1': [1, 2],
-              'status|1': [1, 0],
+              status: {
+                child: {
+                  child: {
+                    'child|1': [0, 1]
+                  }
+                }
+              },
               createTime: '@datetime', //创建时间
               avatar: Random.image('70x70')
             }

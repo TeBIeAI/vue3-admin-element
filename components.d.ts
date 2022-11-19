@@ -33,6 +33,7 @@ declare module '@vue/runtime-core' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTag: typeof import('element-plus/es')['ElTag']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     FieldRender: typeof import('./src/components/hTable/src/fieldRender/fieldRender.vue')['default']
     HSwitch: typeof import('./src/components/hSwitch/index.vue')['default']
     HTable: typeof import('./src/components/hTable/index.vue')['default']
