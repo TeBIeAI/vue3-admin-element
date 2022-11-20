@@ -1,5 +1,6 @@
 import HTable from '@/components/hTable'
-import type { ElTableColumn, TagProps } from 'element-plus'
+import type { ButtonType, ElTableColumn, TagProps } from 'element-plus'
+import type { Component } from 'vue'
 
 declare global {
   interface HTable {
@@ -14,20 +15,33 @@ declare global {
   }
 
   interface OptButton {
-    // tipButton 提示框按钮 popButton 弹出框button
-    renderType: 'tipButton' | 'popButton'
+    // tipButton 提示框按钮 confirmButton 弹出框带确认button
+    renderType: 'tipButton' | 'confirmButton'
     // 按钮tooltip需要提示的
     title?: string
     // 按钮文字
     text?: string
-    icon: string
+    icon: Component
     type: ButtonType
+    popconfirmOption?: {
+      confirmButtonText?: string
+      cancelButtonText?: string
+      title: string
+      confirmButtonType?: ButtonType
+    }
     click?: (row: TableRow, column: TableColumn) => void
     display?: (row: TableRow, column: TableColumn) => boolean
     disabled?: (row: TableRow, column: TableColumn) => boolean
   }
 
   type optButtonType = 'edit' | 'delete'
+
+  type OptHeaderButtons =
+    | 'refresh'
+    | 'add'
+    | 'edit'
+    | 'delete'
+    | 'column-show-change'
 
   interface TableColumn extends ElTableColumn {
     size?: TagProps['size']
@@ -76,4 +90,4 @@ interface ElTableColumn {
   'filtered-value'?: any[]
 }
 
-export type { TableColumn, TableRow }
+export type { TableColumn, TableRow, OptButton }

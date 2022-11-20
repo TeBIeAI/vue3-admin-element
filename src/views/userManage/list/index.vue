@@ -1,14 +1,18 @@
 <template>
-  <HTable :name="tableName" />
+  <div>
+    <TableHeader :name="tableName" />
+    <HTable :name="tableName" />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { getUserList } from '@/api/common'
 import HTable from '@/components/hTable'
-import { defaultOptButtons } from '@/components/hTable/helper'
 import { createTableContext } from '@/hooks/useTableContext'
 import TableClass from '@/utils/table'
 import { defineComponent, ref } from 'vue'
+import { defaultOptButtons } from '@/components/hTable/helper'
+import TableHeader from '@/components/hTable/src/header'
 
 const data = ref<any[]>([])
 
@@ -26,7 +30,7 @@ const tableClass = new TableClass({
   column: [
     {
       type: 'index',
-      label: '序号',
+      label: 'roles',
       width: 100
     },
     {
@@ -63,7 +67,7 @@ const tableClass = new TableClass({
     },
     {
       label: '状态',
-      prop: 'status.child.child.child',
+      prop: 'status',
       render: 'switch'
     },
     {
@@ -86,6 +90,7 @@ const tableClass = new TableClass({
     {
       label: '操作',
       render: 'buttons',
+      width: 100,
       buttons: defaultOptButtons()
     }
   ]
@@ -96,7 +101,7 @@ createTableContext(tableName, tableClass)
 
 <script lang="ts">
 export default defineComponent({
-  name: 'userList'
+  name: 'rolesList'
 })
 </script>
 

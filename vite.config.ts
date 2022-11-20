@@ -9,6 +9,8 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
 import { resolve } from 'path'
 
+const pathSrc = resolve(__dirname, 'src')
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
@@ -24,13 +26,18 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     plugins: [
       vue(),
       AutoImport({
+        imports: ['vue'],
+        dts: resolve(pathSrc, 'auto-imports.d.ts')
+      }),
+      AutoImport({
         resolvers: [
           ElementPlusResolver(),
           // 自动导入图标组件
           IconsResolver({
             prefix: 'Icon'
           })
-        ]
+        ],
+        dts: resolve(pathSrc, 'auto-Notification.d.ts')
       }),
       Components({
         resolvers: [
@@ -39,7 +46,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
           IconsResolver({
             enabledCollections: ['ep']
           })
-        ]
+        ],
+        dts: resolve(pathSrc, 'components.d.ts')
       }),
       Icons({
         autoInstall: true

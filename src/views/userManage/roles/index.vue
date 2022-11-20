@@ -1,5 +1,8 @@
 <template>
-  <HTable :name="tableName" />
+  <div>
+    <TableHeader :name="tableName" />
+    <HTable :name="tableName" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -8,6 +11,8 @@ import HTable from '@/components/hTable'
 import { createTableContext } from '@/hooks/useTableContext'
 import TableClass from '@/utils/table'
 import { ref } from 'vue'
+import { defaultOptButtons } from '@/components/hTable/helper'
+import TableHeader from '@/components/hTable/src/header'
 
 const data = ref<any[]>([])
 
@@ -81,6 +86,12 @@ const tableClass = new TableClass({
     {
       label: '注册时间',
       prop: 'createTime'
+    },
+    {
+      label: '操作',
+      render: 'buttons',
+      width: 100,
+      buttons: defaultOptButtons()
     }
   ]
 })

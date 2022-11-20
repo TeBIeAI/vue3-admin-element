@@ -1,3 +1,7 @@
+import type { App } from 'vue'
+import Icon from '@/components/icon/index'
+import * as elIcons from '@element-plus/icons-vue'
+
 /**
  * 获取资源完整地址
  * @param relativeUrl 资源相对地址
@@ -12,4 +16,13 @@ export const fullUrl = (relativeUrl: string, domain = '') => {
     return relativeUrl
   }
   return domain + relativeUrl
+}
+
+export function registerIcon(app: App) {
+  app.component('Icon', Icon)
+
+  const icons = elIcons as any
+  for (const i in icons) {
+    app.component(`el-icon-${icons[i].name}`, icons[i])
+  }
 }

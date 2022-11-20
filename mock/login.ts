@@ -14,7 +14,7 @@ const routesData = [
     title: '列表',
     filePath: '/views/userManage/list/index',
     pid: 1,
-    // keepAlive: 1,
+    keepAlive: 1,
     operation: ['add', 'edit', 'delete']
   },
   {
@@ -22,7 +22,8 @@ const routesData = [
     name: 'rolesList',
     title: '角色',
     filePath: '/views/userManage/roles/index',
-    pid: 1
+    pid: 1,
+    keepAlive: 1
   },
   {
     id: 4,

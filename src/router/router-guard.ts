@@ -56,7 +56,6 @@ const routerGuard = (router: Router) => {
     // 处理缓存
     const asyncRouteStore = useAsyncRoute()
     const keepAliveComponents = asyncRouteStore.keepAliveComponents
-    console.log(to)
     const cureentCompName = to.matched.find((item) => item.name === to.name)
       ?.name as string
     if (
