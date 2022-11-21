@@ -18,8 +18,8 @@
 <script setup lang="ts">
 import { useTableContext } from '@/hooks/useTableContext'
 import { watch } from 'vue'
-import Column from './src/column'
-import { FieldRender } from './src/fieldRender/index'
+import Column from '@cps/hTable/column'
+import FieldRender from '@cps/hTable/fieldRender'
 
 const props = withDefaults(defineProps<{ name: string }>(), {
   name: 'h-table'

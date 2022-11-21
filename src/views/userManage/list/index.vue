@@ -7,12 +7,12 @@
 
 <script setup lang="ts">
 import { getUserList } from '@/api/common'
-import HTable from '@/components/hTable'
+import HTable from '@cps/hTable'
 import { createTableContext } from '@/hooks/useTableContext'
 import TableClass from '@/utils/table'
 import { defineComponent, ref } from 'vue'
-import { defaultOptButtons } from '@/components/hTable/helper'
-import TableHeader from '@/components/hTable/src/header'
+import { defaultOptButtons } from '@cps/hTable/helper'
+import TableHeader from '@cps/hTable/tableHeader'
 
 const data = ref<any[]>([])
 

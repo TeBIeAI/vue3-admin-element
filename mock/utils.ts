@@ -1,3 +1,3 @@
 export function getTimeOut() {
-  return Math.round(Math.random() * 1000 + 500)
+  return Math.round(Math.random() * 100 + 100)
 }

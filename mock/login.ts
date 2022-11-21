@@ -1,4 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
+import { getTimeOut } from './utils'
 
 const routesData = [
   {
@@ -66,7 +67,7 @@ export default [
   {
     url: '/api/login_acctoken',
     method: 'post',
-    timeout: 200,
+    timeout: getTimeOut(),
     response: () => {
       return {
         code: 200,
@@ -80,7 +81,7 @@ export default [
   {
     url: '/api/login_get_userinfo',
     method: 'get',
-    timeout: 200,
+    timeout: getTimeOut(),
     response: () => {
       return {
         code: 200,

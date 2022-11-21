@@ -54,13 +54,13 @@
 </template>
 
 <script setup lang="ts">
+import { OptHeaderButtons } from '/types/table'
 import { useTableContext } from '@/hooks/useTableContext'
 import { Plus, Refresh, Grid, Search } from '@element-plus/icons-vue'
 import { computed } from 'vue'
 
 interface Props {
   name: string
-  // eslint-disable-next-line no-undef
   buttons?: OptHeaderButtons[]
 }
 

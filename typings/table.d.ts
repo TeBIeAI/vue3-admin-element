@@ -90,4 +90,4 @@ interface ElTableColumn {
   'filtered-value'?: any[]
 }
 
-export type { TableColumn, TableRow, OptButton }
+export type { TableColumn, TableRow, OptButton, OptHeaderButtons }

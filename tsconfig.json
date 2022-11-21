@@ -1,26 +1,41 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["esnext", "dom"],
+    // allowJs用来指定是否允许编译JS文件，默认false,即不编译JS文件
+    "allowJs": true,
+    // checkJs用来指定是否检查和报告JS文件中的错误，默认false
+    "checkJs": true,
+    // 指定jsx代码用于的开发环境:‘preserve’,‘react-native’,or 'react
     "jsx": "preserve",
-    // 生成相应的 .map文件
+    // declaration用来指定是否在编译的时候生成相的d.ts声明文件，如果设为true,编译每个ts文件之后会生成一个js文件和一个声明文件，但是declaration和allowJs不能同时设为true
+    // "declaration": false,
+    // declarationMap用来指定编译时是否生成.map文件
+    // socuceMap用来指定编译时是否生成.map文件
     "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true,
+    // noEmit不生成编译文件
     "noEmit": true,
-    "types": ["element-plus/global"],
-    "baseUrl": ".",
+    // 是否移除注释
+    "removeComments": true,
+    "strict": true,
+    // moduleResolution用于选择模块解析策略，有"node"和"classic"两种类型
+    "moduleResolution": "node",
+    // esModuleInterop通过导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性
+    "esModuleInterop": true,
+    // isolatedModules指定是否将每个文件作为单独的模块，默认为true，他不可以和declaration同时设定
+    "isolatedModules": true,
+    // baseUrl用于设置解析非相对模块名称的基本目录，相对模块不会受到baseUrl的影响
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["src/*"],
+      "@cps/*": ["src/components/*"],
+      "/types/*": ["typings/*"]
+    },
+    // types用于指定需要包含的模块，只有在这里列出的模块的声明文件才会被加载
+    "types": ["element-plus/global"]
   },
-  "exclude": ["nodenode_modules"],
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src", "typings/*.d.ts"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

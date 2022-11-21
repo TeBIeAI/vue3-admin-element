@@ -8,8 +8,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import './styles/index.scss'
 import { registerIcon } from './utils/common'
 import 'element-plus/dist/index.css'
-
-function bootstrap() {
+;(() => {
   const app = createApp(App)
 
   app.use(ElementPlus)
@@ -20,6 +19,4 @@ function bootstrap() {
   registerIcon(app)
 
   app.mount('#app')
-}
-
-bootstrap()
+})()

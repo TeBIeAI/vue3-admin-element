@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { TableColumn, TableRow, OptButton } from '@/types/table'
+import { TableColumn, TableRow } from '/types/table'
 import { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
@@ -107,6 +107,7 @@ const getValueType = (value: keyof any, custom: any): TagProps['type'] => {
   return custom ? custom[value] : ''
 }
 
+// eslint-disable-next-line no-undef
 const onButtonClick = (item: OptButton) => {
   if (isFunction(item.click)) {
     return item.click(props.row, props.field)
