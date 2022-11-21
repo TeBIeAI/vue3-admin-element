@@ -43,7 +43,10 @@ declare global {
     | 'delete'
     | 'column-show-change'
 
+  type OpertaorType = 'date' | 'date-range' | 'select' | false
+
   interface TableColumn extends ElTableColumn {
+    operator?: OpertaorType
     size?: TagProps['size']
     show?: boolean
     render?: 'icon' | 'tag' | 'image' | 'images' | 'buttons' | 'switch'
@@ -57,6 +60,10 @@ declare global {
 
   interface TableRow extends AnyObj {
     children?: TableRow[]
+  }
+
+  interface ComSearchForm {
+    form: AnyObj
   }
 }
 

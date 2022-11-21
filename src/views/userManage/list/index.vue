@@ -36,7 +36,8 @@ const tableClass = new TableClass({
     {
       label: 'ID',
       prop: 'id',
-      width: 100
+      width: 100,
+      operator: false
     },
     {
       label: '姓名',
@@ -45,7 +46,8 @@ const tableClass = new TableClass({
     {
       label: '头像',
       prop: 'avatar',
-      render: 'image'
+      render: 'image',
+      operator: false
     },
     {
       label: '性别',
@@ -63,7 +65,8 @@ const tableClass = new TableClass({
     },
     {
       label: '网名',
-      prop: 'nickname'
+      prop: 'nickname',
+      operator: false
     },
     {
       label: '状态',
@@ -85,11 +88,13 @@ const tableClass = new TableClass({
     },
     {
       label: '注册时间',
-      prop: 'createTime'
+      prop: 'createTime',
+      operator: 'date-range'
     },
     {
       label: '操作',
       render: 'buttons',
+      operator: false,
       width: 100,
       buttons: defaultOptButtons()
     }

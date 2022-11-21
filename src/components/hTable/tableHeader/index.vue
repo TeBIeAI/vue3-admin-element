@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <ComSearchForm :name="name" />
+  </div>
+
   <div class="table-header-operate">
     <el-tooltip
       v-if="buttons.includes('refresh')"
@@ -58,6 +62,7 @@ import { OptHeaderButtons } from '/types/table'
 import { useTableContext } from '@/hooks/useTableContext'
 import { Plus, Refresh, Grid, Search } from '@element-plus/icons-vue'
 import { computed } from 'vue'
+import ComSearchForm from '../comSearch'
 
 interface Props {
   name: string

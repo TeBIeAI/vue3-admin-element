@@ -7,6 +7,10 @@ export default class {
     column: []
   })
 
+  public comSearchForm: ComSearchForm = reactive({
+    form: {}
+  })
+
   constructor(table: HTable) {
     this.table = Object.assign(this.table, table)
   }
