@@ -11,9 +11,7 @@ const defaultOptButtons = function (
         icon: EditPen,
         type: 'primary',
         title: '编辑',
-        click(row, field) {
-          console.log(row, field)
-        }
+        name: 'edit'
       }
     ],
     [
@@ -23,14 +21,12 @@ const defaultOptButtons = function (
         renderType: 'confirmButton',
         icon: Delete,
         type: 'danger',
+        name: 'delete',
         popconfirmOption: {
           cancelButtonText: '取消',
           title: '确定删除吗',
           confirmButtonText: '确定',
           confirmButtonType: 'danger'
-        },
-        click(row, field) {
-          console.log(row, field)
         }
       }
     ]

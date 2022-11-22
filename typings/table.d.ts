@@ -4,14 +4,24 @@ import type { Component } from 'vue'
 
 declare global {
   interface HTable {
+    // 用于标识该表格的主键  主要用于操作
+    pk?: string
     ref?: typeof HTable
     // 表格数据
-    data: Record<string, any>
+    data?: Record<string, any>
     // 表格列
     column: TableColumn[]
     loading?: boolean
     // 显示公共搜索
     showComSearch?: boolean
+    // 表格帅选条件
+    filter?: {
+      currentPage?: number // 要请求的页码
+      pageSize?: number
+      pageSizes?: number
+      [k: string]: any
+    }
+    total?: number
   }
 
   interface OptButton {
@@ -19,6 +29,7 @@ declare global {
     renderType: 'tipButton' | 'confirmButton'
     // 按钮tooltip需要提示的
     title?: string
+    name: string
     // 按钮文字
     text?: string
     icon: Component

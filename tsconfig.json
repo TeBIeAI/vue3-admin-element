@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "esnext",
     "lib": ["esnext", "dom"],
     // allowJs用来指定是否允许编译JS文件，默认false,即不编译JS文件
     "allowJs": true,

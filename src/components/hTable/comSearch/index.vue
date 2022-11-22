@@ -40,6 +40,16 @@
                   </el-select>
                 </div>
                 <div
+                  v-else-if="item.operator === 'date'"
+                  class="com-search-col-input"
+                >
+                  <el-date-picker
+                    v-model="table.comSearchForm.form[item.prop!]"
+                    type="date"
+                    class="datetime-pick-renge"
+                  />
+                </div>
+                <div
                   v-else-if="item.render === 'switch'"
                   class="com-search-col-input"
                 >
@@ -102,9 +112,8 @@ const table = useTableContext(props.name)
 const columns = computed(() => table.table.column)
 
 const onSearchSubmit = () => {
-  console.log(table.comSearchForm.form)
+  table.onTaleAction('com-search', table.comSearchForm.form)
 }
-console.log(columns)
 </script>
 
 <style scoped lang="scss">
@@ -148,6 +157,9 @@ console.log(columns)
 }
 
 :deep(.datetime-pick-renge) {
+  width: 100%;
+}
+.el-select {
   width: 100%;
 }
 </style>

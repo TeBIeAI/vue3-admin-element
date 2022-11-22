@@ -79,15 +79,18 @@ import type { Ref } from 'vue'
 import type { TagProps } from 'element-plus'
 import { fullUrl } from '@/utils/common'
 import { isFunction } from '@/utils/is'
+import { useTableContext } from '@/hooks/useTableContext'
 
 interface Props {
   row: TableRow
   field: TableColumn
   column: TableColumnCtx<TableRow>
   index: any
+  name: string
 }
 
 const props = defineProps<Props>()
+const table = useTableContext(props.name)
 
 const fieldName: Ref<string | undefined> = ref(props.field.prop)
 
@@ -113,6 +116,7 @@ const onButtonClick = (item: OptButton) => {
     return item.click(props.row, props.field)
   }
   // 可以在此处配置通用API操作
+  table.onTaleAction(item.name, props)
 }
 </script>
 

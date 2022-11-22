@@ -24,7 +24,7 @@ interface IUserInfo {
 }
 export const login_getUserInfo = () => {
   return request<IUserInfo>({
-    url: '/api/login_get_userinfo',
+    url: '/login_get_userinfo',
     method: 'GET'
   })
 }

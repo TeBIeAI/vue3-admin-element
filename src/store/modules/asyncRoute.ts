@@ -72,7 +72,6 @@ function createAsyncRouterTree(routeList: any[]) {
       val.push(it)
     }
   })
-  console.log(val)
   return val
 }
 

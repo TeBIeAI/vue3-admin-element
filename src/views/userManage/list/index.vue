@@ -6,33 +6,28 @@
 </template>
 
 <script setup lang="ts">
-import { getUserList } from '@/api/common'
+import { admin_user } from '@/api/apiController'
 import HTable from '@cps/hTable'
 import { createTableContext } from '@/hooks/useTableContext'
 import TableClass from '@/utils/table'
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { defaultOptButtons } from '@cps/hTable/helper'
 import TableHeader from '@cps/hTable/tableHeader'
+import baseTableApi from '@/api/baseTableApi'
 
-const data = ref<any[]>([])
+// const data = ref<any[]>([])
 
-const getList = async () => {
-  const res = await getUserList()
-  data.value = res.data.data
-}
+// // const getList = async () => {
+// //   const res = await getUserList()
+// //   data.value = res.data.data
+// // }
 
-getList()
+// // getList()
 
 const tableName = 'xiaohan'
 
-const tableClass = new TableClass({
-  data,
+const tableClass = new TableClass(new baseTableApi(admin_user), {
   column: [
-    {
-      type: 'index',
-      label: 'roles',
-      width: 100
-    },
     {
       label: 'ID',
       prop: 'id',
@@ -63,11 +58,7 @@ const tableClass = new TableClass({
         2: 'danger'
       }
     },
-    {
-      label: '网名',
-      prop: 'nickname',
-      operator: false
-    },
+
     {
       label: '状态',
       prop: 'status',
@@ -92,14 +83,24 @@ const tableClass = new TableClass({
       operator: 'date-range'
     },
     {
+      label: '上次登录时间',
+      prop: 'lastlogin',
+      operator: 'date'
+    },
+    {
       label: '操作',
       render: 'buttons',
       operator: false,
       width: 100,
       buttons: defaultOptButtons()
     }
-  ]
+  ],
+  filter: {
+    name: '汉朝'
+  }
 })
+
+tableClass.getIndex()
 
 createTableContext(tableName, tableClass)
 </script>

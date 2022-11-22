@@ -3,7 +3,7 @@ import type { AxiosRequestConfig } from 'axios'
 
 const createAxios = (axiosConfig: AxiosRequestConfig) => {
   const Axios = axios.create({
-    baseURL: import.meta.env.BASE_URL as string,
+    baseURL: (import.meta.env.BASE_URL as string) + 'api',
     timeout: 1000 * 10,
     headers: {
       'Content-Type': 'application/json',
@@ -14,8 +14,6 @@ const createAxios = (axiosConfig: AxiosRequestConfig) => {
 
   Axios.interceptors.request.use(
     (config: AxiosRequestConfig) => {
-      console.log(config)
-
       return config
     },
     (error) => {

@@ -5,13 +5,16 @@ import router from './router'
 import i18n from './locals'
 import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import './styles/index.scss'
 import { registerIcon } from './utils/common'
 import 'element-plus/dist/index.css'
 ;(() => {
   const app = createApp(App)
 
-  app.use(ElementPlus)
+  app.use(ElementPlus, {
+    locale: zhCn
+  })
   app.use(store)
   app.use(router)
   app.use(i18n)

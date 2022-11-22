@@ -44,6 +44,7 @@ const handleCollapsed = () => {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding: 5px 0;
   }
 }
 </style>
